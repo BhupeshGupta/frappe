@@ -13,10 +13,10 @@ def get_pdf(html, options=None):
 		"print-media-type": None,
 		"background": None,
 		"images": None,
-		'margin-top': '15mm',
-		'margin-right': '15mm',
-		'margin-bottom': '15mm',
-		'margin-left': '15mm',
+		# 'margin-top': '10mm',
+		# 'margin-right': '1mm',
+		# 'margin-bottom': '10mm',
+		# 'margin-left': '1mm',
 		'encoding': "UTF-8",
 		'no-outline': None
 	})
