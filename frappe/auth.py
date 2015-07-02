@@ -106,6 +106,7 @@ class LoginManager:
 
 		full_name = " ".join(filter(None, [info.first_name, info.last_name]))
 		frappe.response["full_name"] = full_name
+		frappe.response["sid"] = frappe.local.session.sid
 		frappe.local.cookie_manager.set_cookie("full_name", full_name)
 		frappe.local.cookie_manager.set_cookie("user_id", self.user)
 		frappe.local.cookie_manager.set_cookie("user_image", info.user_image or "")
