@@ -204,7 +204,7 @@ frappe.views.QueryReport = Class.extend({
 		var $filters = this.appframe.parent.find('.appframe-form .filters');
 		this.appframe.parent.find('.appframe-form').toggle($filters.length ? true : false);
 
-		this.set_route_filters()
+		this.set_route_filters();
 		this.set_filters_by_name();
 	},
 	clear_filters: function() {
@@ -311,6 +311,10 @@ frappe.views.QueryReport = Class.extend({
 			}
 		}));
 
+		if(frappe.query_reports[this.report_name].startup) {
+			frappe.query_reports[this.report_name].startup(this.grid, this.dataView);
+		}
+
 		this.setup_header_row();
 		this.grid.init();
 		this.setup_sort();
@@ -361,6 +365,10 @@ frappe.views.QueryReport = Class.extend({
 				col.field = df.fieldname || df.label;
 				df.label = __(df.label);
 				col.name = col.id = col.label = df.label;
+
+				if (df.editor) {
+					col.editor = eval(df.editor);
+				}
 
 				return col
 		}));
