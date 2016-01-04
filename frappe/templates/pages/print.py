@@ -10,6 +10,7 @@ from frappe.modules import get_doc_path
 from jinja2 import TemplateNotFound
 from frappe.utils import cint, strip_html
 from frappe.utils.pdf import get_pdf
+import codecs
 
 no_cache = 1
 no_sitemap = 1
@@ -122,7 +123,7 @@ def get_print_format(doctype, format_name):
 		"Print Format", format_name), frappe.scrub(format_name) + ".html")
 
 	if os.path.exists(path):
-		with open(path, "r") as pffile:
+		with codecs.open(path, "r", encoding='utf=8') as pffile:
 			return pffile.read()
 	else:
 		html = frappe.db.get_value("Print Format", format_name, "html")
